@@ -1,0 +1,78 @@
+<div *ngIf="articles.length > 0 else emptyTemplate ">
+  <div *ngFor="let item of articles
+                | paginate:
+                {
+                  itemsPerPage:pageSize,
+                  currentPage:page,
+                  totalItems:totalCount
+                }">
+    <ng-container *ngTemplateOutlet="horizontalTemplate;
+    context:{
+      id:item.id,
+      commentCount:item.commentCount,
+      viewCount:item.viewCount,
+      categoryName:item.category.name,
+      publishDate:item.publishDate,
+      contentSummary:item.contentSummary,
+      title:item.title,
+      picture:item.picture}">
+    </ng-container>
+
+  </div>
+</div>
+
+<ng-template #emptyTemplate>
+  <div class="alert-danger">
+    Makale bulunamadı...
+  </div>
+</ng-template>
+
+<ng-template
+  #horizontalTemplate
+  let-title="title"
+  let-picture="picture"
+  let-contentSummary="contentSummary"
+  let-publishDate="publishDate"
+  let-categoryName="categoryName"
+  let-viewCount="viewCount"
+  let-commentCount="commentCount"
+  let-id="id">
+  <div class="card bg-light border-primary mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img [src]="picture || default_article">
+        </div>
+        <div class="col-md-8">
+          <h5 class="card-title">{{title}}</h5>
+          <p class="card-text">{{contentSummary}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-transperent border-primary">
+      <span class="badge badge-pill badge-dark">
+        <i class="fa fa-calendar"></i> {{publishDate | date:'dd.MM.yyyy'}}
+      </span>
+      <span class="mr-1"></span>
+      <span class="badge badge-pill badge-success">
+        <i class="fa fa-folder"></i> {{categoryName}}
+      </span>
+      <span class="mr-1"></span>
+      <span class="badge badge-pill badge-success">
+        <i class="fa fa-eye"></i> {{viewCount}}
+      </span>
+      <span class="mr-1"></span>
+      <span class="badge badge-pill badge-primary">
+        <i class="fa fa-comment"></i> {{commentCount}}
+      </span>
+      <a [routerLink]="['/makale',id]" class="btn btn-primary btn-sm float-right">Devamını oku</a>
+    </div>
+  </div>
+</ng-template>
+
+<!-- responsive="true" eklenecek -->
+<pagination-controls
+(pageChange)="pageChanged($event)"
+previousLabel="geri"
+nextLabel="ileri">
+</pagination-controls>

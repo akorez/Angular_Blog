@@ -6,6 +6,10 @@ import { AboutMeComponent } from './pages/about-me/about-me.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { CategoryArticlesComponent } from './pages/category-articles/category-articles.component';
+import { SearchComponent } from './pages/search/search.component';
+import { ArchiveComponent } from './pages/archive/archive.component';
 
 
 
@@ -22,6 +26,35 @@ const routes: Routes = [
       {
         path:"sayfa/:page",
         component:HomeComponent
+
+      },
+      {
+        path:"makale/:title/:id",
+        component:ArticleComponent
+
+      },
+      {
+        path:"category/:name/:id",
+        component:CategoryArticlesComponent
+
+      },
+      {
+        path:"category/:name/:id/sayfa/:page",
+        component:CategoryArticlesComponent
+
+      },
+      {
+        path:"arama/sayfa/:page",
+        component:SearchComponent
+      },
+      {
+        path:"arsiv/:year/:month",
+        component:ArchiveComponent
+
+      },
+      {
+        path:"arsiv/:year/:month/sayfa/:page",
+        component:ArchiveComponent
 
       },
       {

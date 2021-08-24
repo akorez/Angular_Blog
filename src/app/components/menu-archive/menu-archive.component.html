@@ -1,0 +1,26 @@
+<div class="card border-primary">
+  <div class="card-header">
+    <strong>Arşiv</strong>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="archives.length == 0" class="d-flex justify-content-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <h3 *ngFor="let archive of archives">
+      <strong>
+      <a [routerLink]="['/arsiv',archive.year,archive.month]" class="btn btn-link">
+        <i class="fas fa-angle-right"></i>{{archive.year}} {{archive.monthName}} ({{archive.count}})</a>
+      </strong>
+
+    </h3>
+
+
+
+
+  </div>
+</div>
+

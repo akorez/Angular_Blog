@@ -10,7 +10,7 @@
 
     <h3 *ngFor="let category of categories">
       <strong>
-        <a [routerLink]="['/kategori',category.name,category.id]" class="btn btn-link">
+        <a [routerLink]="['/category',category.name | urlformat,category.id]" class="btn btn-link">
           <i class="fa fa-arrow-circle-right"></i> {{category.name}}</a>
       </strong>
 

@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   articles: Article[];
   totalCount: number;
   pageSize: number = 5;
-  loadingItem:number = 5;
-  ajax:any;
+  loadingItem: number = 5;
+  ajax: any;
 
   constructor(
     private articleService: ArticleService,
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
   ngOnDestroy(): void {
-    if(this.ajax !=null) this.ajax.unsubscribe();
+    if (this.ajax != null) this.ajax.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -31,11 +31,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.page = Number(params.get('page'));
       }
       if (this.totalCount > 0) {
-        if(this.totalCount >= this.page*this.pageSize){
+        if (this.totalCount >= this.page * this.pageSize) {
           this.loadingItem = 5;
-        }
-        else {
-          this.loadingItem = this.totalCount - (this.page-1)*this.pageSize;
+        } else {
+          this.loadingItem = this.totalCount - (this.page - 1) * this.pageSize;
         }
       }
       this.articles = [];
@@ -44,7 +43,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.ajax = this.articleService
         .getArticles(this.page, this.pageSize)
         .subscribe((data) => {
-          //console.log(data);
           this.articles = data.articles;
           this.totalCount = data.totalCount;
         });

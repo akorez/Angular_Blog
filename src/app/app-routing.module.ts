@@ -10,6 +10,15 @@ import { ArticleComponent } from './pages/article/article.component';
 import { CategoryArticlesComponent } from './pages/category-articles/category-articles.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ArchiveComponent } from './pages/archive/archive.component';
+import { AdminHomeComponent } from './admin-pages/admin-home/admin-home.component';
+
+import { ArticleAddComponent } from './admin-pages/articles/article-add/article-add.component';
+import { ArticleListComponent } from './admin-pages/articles/article-list/article-list.component';
+import { ArticleUpdateComponent } from './admin-pages/articles/article-update/article-update.component';
+import { AdminArticleComponent } from './admin-pages/articles/article/article.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 
@@ -66,14 +75,46 @@ const routes: Routes = [
       //www.ornek.com/iletisim
         path:"iletisim",
         component:ContactComponent
+      },
+      {
+        path:"adminlogin",
+        component:AdminLoginComponent
       }
     ]
   },
   {
-    //www.ornek.com/admin
+    //www.ornek.com/admin 
     path:"admin",
     component:AdminLayoutComponent,
-    children:[]
+    canActivate:[AuthGuardService],
+    children:[
+      {
+        path:"",
+        component:AdminHomeComponent
+      },
+      {
+        path:"anasayfa",
+        component:AdminHomeComponent
+      },
+      {
+        path:"makale",
+        component:AdminArticleComponent,
+        children:[
+          {
+            path:"ekle",
+            component:ArticleAddComponent
+          },
+          {
+            path:"liste",
+            component:ArticleListComponent
+          },
+          {
+            path:"guncelle/:id",
+            component:ArticleUpdateComponent
+          }
+        ]
+      }
+    ]
   }
 
 

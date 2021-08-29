@@ -19,6 +19,7 @@ export class ArticleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.articleService.loading);
     this.route.paramMap.subscribe((params) => {
       this.articleService.loading = true;
       let id = Number(this.route.snapshot.paramMap.get('id'));

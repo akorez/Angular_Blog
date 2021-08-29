@@ -4,6 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete'
 
 @NgModule({
   declarations: [],
@@ -14,6 +17,10 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatButtonModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatAutocompleteModule
+
   ],
   exports: [
     CommonModule,
@@ -22,6 +29,9 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatButtonModule,
     MatInputModule,
-  ],
+    MatTableModule,
+    MatPaginatorModule,
+    MatAutocompleteModule
+  ]
 })
 export class MaterialModule {}

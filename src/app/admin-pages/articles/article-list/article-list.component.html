@@ -1,0 +1,45 @@
+<div></div>
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="picture">
+      <th mat-header-cell *matHeaderCellDef> Resim </th>
+      <td mat-cell *matCellDef="let article">
+        <img class="img-thumbnail" style="width: 75px;height: 75px;" [src]="article.picture || 'assets/article_empty.png'">
+         </td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Başlık </th>
+      <td mat-cell *matCellDef="let article">{{article.title}}</td>
+    </ng-container>
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Kategori</th>
+      <td mat-cell *matCellDef="let article"><strong>{{article.category.name}}</strong></td>
+    </ng-container>
+    <ng-container matColumnDef="publishDate">
+      <th mat-header-cell *matHeaderCellDef>Yayın Tarihi</th>
+      <td mat-cell *matCellDef="let article">{{article.publishDate | date:'shortDate'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="viewCount">
+      <th mat-header-cell *matHeaderCellDef> Görüntülenme Sayısı</th>
+      <td mat-cell *matCellDef="let article">{{article.viewCount}}</td>
+    </ng-container>
+    <ng-container matColumnDef="commentCount">
+      <th mat-header-cell *matHeaderCellDef> Yorum Sayısı </th>
+      <td mat-cell *matCellDef="let article">{{article.commentCount}}</td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+      <td mat-cell *matCellDef="let article">
+        <button [routerLink]="['/admin/makale/guncelle',article.id]" mat-raised-button color="primary">güncelle</button>
+        <button (click)="deleteArticle(article.id)" mat-raised-button color="warn" class="ml-1">Sil</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons>
+  </mat-paginator>
+

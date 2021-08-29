@@ -34,7 +34,6 @@ export class ArticleService {
 
   getArticleWithCategory(categoryId: number, page: number, pageSize: number) {
     let api = `${this.apiUrl}/GetArticlesWithCategory/${categoryId}/${page}/${pageSize}`;
-    console.log(api);
     return this.httpCilent.get<ArticlePg>(api).pipe(
       tap((x) => {
         this.loading = false;
@@ -53,23 +52,28 @@ export class ArticleService {
 
   getArticlesByMostView() {
     let api = `${this.apiUrl}/GetArticlesByMostView`;
-    return this.httpCilent.get<Article []>(api).pipe(
+    return this.httpCilent.get<Article[]>(api).pipe(
       tap((x) => {
         this.loading = false;
       })
     );
   }
 
-  getArticlesArchive(){
+  getArticlesArchive() {
     let api = `${this.apiUrl}/getArticlesArchive`;
-    return this.httpCilent.get<Archive []>(api).pipe(
+    return this.httpCilent.get<Archive[]>(api).pipe(
       tap((x) => {
         this.loading = false;
       })
     );
   }
 
-  getArticleArchiveList(year:number,month:number,page:number,pageSize:number){
+  getArticleArchiveList(
+    year: number,
+    month: number,
+    page: number,
+    pageSize: number
+  ) {
     let api = `${this.apiUrl}/getArticleArchiveList/${year}/${month}/${page}/${pageSize}`;
     return this.httpCilent.get<ArticlePg>(api).pipe(
       tap((x) => {
@@ -78,12 +82,32 @@ export class ArticleService {
     );
   }
 
-  articleViewCountUp(id:number) {
+  articleViewCountUp(id: number) {
     let api = `${this.apiUrl}/articleViewCountUp/${id}`;
     return this.httpCilent.get(api).pipe(
       tap((x) => {
         this.loading = false;
       })
     );
+  }
+
+  getArticlesWithoutPagination() {
+    return this.httpCilent.get<Article[]>(this.apiUrl);
+  }
+
+  saveArticlePicture(picture: any) {
+    return this.httpCilent.post<any>(`${this.apiUrl}/SaveArticlePicture`, picture);
+  }
+
+  addArticle(article:Article){
+    return this.httpCilent.post(this.apiUrl,article);
+  }
+
+  updateArticle(id:number,article:Article){
+    return this.httpCilent.put(`${this.apiUrl}/${id}`,article);
+  }
+
+  deleteArticle(id:number){
+    return this.httpCilent.delete(`${this.apiUrl}/${id}`);
   }
 }

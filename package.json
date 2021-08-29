@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@ckeditor/ckeditor5-angular": "^2.0.2",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^29.1.0",
     "bootstrap": "^4.3.1",
     "jquery": "^3.6.0",
     "ngx-pagination": "^5.1.1",

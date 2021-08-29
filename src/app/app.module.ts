@@ -6,9 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MainModule} from './pages/main.module';
 
 import { AppComponent } from './app.component';
+import { AdminModule } from './admin-pages/admin.module';
 
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
-import { AdminNavComponent } from './nav/admin-nav/admin-nav.component';
+
+
 
 
 
@@ -16,17 +17,15 @@ import { AdminNavComponent } from './nav/admin-nav/admin-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    AdminNavComponent
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MainModule
+    MainModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

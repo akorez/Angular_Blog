@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl:'https://angularblogcoreapi20210830192007.azurewebsites.net/api'
 };

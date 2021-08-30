@@ -4,12 +4,13 @@ import { ArticlePg } from '../models/article-pg';
 import { tap } from 'rxjs/operators';
 import { Article } from '../models/article';
 import { Archive } from '../models/archive';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-  private apiUrl: string = 'https://localhost:44387/api/articles';
+  private apiUrl: string = `${environment.baseUrl}/articles`;
   public loading: boolean = true;
   constructor(private httpCilent: HttpClient) {}
 
